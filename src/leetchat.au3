@@ -1,5 +1,5 @@
 ; Leet Chat
-; Copyright © 2011 Henry++
+; Copyright В© 2011 Henry++
 ;
 ; GNU General Public License v2
 ; http://www.gnu.org/licenses/
@@ -51,77 +51,77 @@ TCPStartup()
 _ActionDlg(1)
 
 Func _ActionDlg($iMode = 1)
-	Global $action_dlg = GUICreate("Клиент", 324, 225, -1, -1, -1, $WS_EX_TOPMOST)
+	Global $action_dlg = GUICreate("РљР»РёРµРЅС‚", 324, 225, -1, -1, -1, $WS_EX_TOPMOST)
 	GUISetIcon(@ScriptFullPath, -1)
 
 	GUICtrlCreateGroup("", 10, 5, 304, 177)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 
-	Local $close_btn = GUICtrlCreateButton("Закрыть", 240, 192, 75, 25, -1, $WS_EX_STATICEDGE)
+	Local $close_btn = GUICtrlCreateButton("Р—Р°РєСЂС‹С‚СЊ", 240, 192, 75, 25, -1, $WS_EX_STATICEDGE)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 
 	;Client
-	Global $server_label_1 = GUICtrlCreateLabel("Адрес сервера:", 25, 25, 175, 15)
+	Global $server_label_1 = GUICtrlCreateLabel("РђРґСЂРµСЃ СЃРµСЂРІРµСЂР°:", 25, 25, 175, 15)
 	Global $server_input_1 = GUICtrlCreateInput(IniRead($settings_file, "Client", "LastServer", @IPAddress1), 25, 45, 175, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 
-	Global $port_label_1 = GUICtrlCreateLabel("Порт:", 210, 25, 89, 15)
+	Global $port_label_1 = GUICtrlCreateLabel("РџРѕСЂС‚:", 210, 25, 89, 15)
 	Global $port_input_1 = GUICtrlCreateInput(IniRead($settings_file, "Client", "LastPort", $server_port), 210, 45, 89, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 
-	Global $name_label_1 = GUICtrlCreateLabel("Имя пользователя:", 25, 75, 273, 15)
+	Global $name_label_1 = GUICtrlCreateLabel("РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:", 25, 75, 273, 15)
 	Global $name_input_1 = GUICtrlCreateInput(IniRead($settings_file, "Client", "LastName", @UserName), 25, 95, 273, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 
-	Global $password_label_1 = GUICtrlCreateLabel("Пароль:", 25, 125, 273, 15)
+	Global $password_label_1 = GUICtrlCreateLabel("РџР°СЂРѕР»СЊ:", 25, 125, 273, 15)
 	Global $password_input_1 = GUICtrlCreateInput(_nCrypt(IniRead($settings_file, "Client", "LastPassword", ""), $cipher_key), 25, 145, 273, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 
-	Global $server_btn = GUICtrlCreateButton("Сервер", 10, 192, 75, 25, -1, $WS_EX_STATICEDGE)
+	Global $server_btn = GUICtrlCreateButton("РЎРµСЂРІРµСЂ", 10, 192, 75, 25, -1, $WS_EX_STATICEDGE)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	If _OpenMutex($server_mutex) Then GUICtrlSetState(-1, $GUI_DISABLE)
 
-	Global $connect_btn = GUICtrlCreateButton("Соединиться", 160, 192, 75, 25, -1, $WS_EX_STATICEDGE)
+	Global $connect_btn = GUICtrlCreateButton("РЎРѕРµРґРёРЅРёС‚СЊСЃСЏ", 160, 192, 75, 25, -1, $WS_EX_STATICEDGE)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_DEFBUTTON)
 
 	;Server
-	Global $server_label_2 = GUICtrlCreateLabel("Адрес сервера:", 25, 25, 175, 15)
+	Global $server_label_2 = GUICtrlCreateLabel("РђРґСЂРµСЃ СЃРµСЂРІРµСЂР°:", 25, 25, 175, 15)
 	GUICtrlSetState(-1, $GUI_HIDE)
 	Global $server_input_2 = GUICtrlCreateCombo("", 25, 45, 175, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetData(-1, @IPAddress1 &"|"& @IPAddress2, @IPAddress1)
 	GUICtrlSetState(-1, $GUI_HIDE)
 
-	Global $port_label_2 = GUICtrlCreateLabel("Порт:", 210, 25, 89, 15)
+	Global $port_label_2 = GUICtrlCreateLabel("РџРѕСЂС‚:", 210, 25, 89, 15)
 	GUICtrlSetState(-1, $GUI_HIDE)
 	Global $port_input_2 = GUICtrlCreateInput(IniRead($settings_file, "Server", "LastPort", $server_port), 210, 45, 89, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_HIDE)
 
-	Global $name_label_2 = GUICtrlCreateLabel("Имя сервера:", 25, 75, 175, 15)
+	Global $name_label_2 = GUICtrlCreateLabel("РРјСЏ СЃРµСЂРІРµСЂР°:", 25, 75, 175, 15)
 	GUICtrlSetState(-1, $GUI_HIDE)
 	Global $name_input_2 = GUICtrlCreateInput(IniRead($settings_file, "Server", "LastName", "Leet Server"), 25, 95, 175, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_HIDE)
 
-	Global $users_label_2 = GUICtrlCreateLabel("Клиентов:", 210, 75, 89, 15)
+	Global $users_label_2 = GUICtrlCreateLabel("РљР»РёРµРЅС‚РѕРІ:", 210, 75, 89, 15)
 	GUICtrlSetState(-1, $GUI_HIDE)
 	Global $users_input_2 = GUICtrlCreateInput(IniRead($settings_file, "Server", "LastMaxClients", 10), 210, 95, 89, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_HIDE)
 
-	Global $password_label_2 = GUICtrlCreateLabel("Пароль:", 25, 125, 273, 15)
+	Global $password_label_2 = GUICtrlCreateLabel("РџР°СЂРѕР»СЊ:", 25, 125, 273, 15)
 	GUICtrlSetState(-1, $GUI_HIDE)
 	Global $password_input_2 = GUICtrlCreateInput(_nCrypt(IniRead($settings_file, "Server", "LastPassword", ""), $cipher_key), 25, 145, 273, 21)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_HIDE)
 
-	Global $client_btn = GUICtrlCreateButton("Клиент", 10, 192, 75, 25, -1, $WS_EX_STATICEDGE)
+	Global $client_btn = GUICtrlCreateButton("РљР»РёРµРЅС‚", 10, 192, 75, 25, -1, $WS_EX_STATICEDGE)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_HIDE)
 
-	Global $create_btn = GUICtrlCreateButton("Создать", 160, 192, 75, 25, -1, $WS_EX_STATICEDGE)
+	Global $create_btn = GUICtrlCreateButton("РЎРѕР·РґР°С‚СЊ", 160, 192, 75, 25, -1, $WS_EX_STATICEDGE)
 	DllCall("UxTheme.dll", "int", "SetWindowTheme", "hwnd", GUICtrlGetHandle(-1), "wstr", "", "wstr", "")
 	GUICtrlSetState(-1, $GUI_HIDE)
 
@@ -145,11 +145,11 @@ Func _ActionDlg($iMode = 1)
 				Local $server_data = GUICtrlRead($server_input_1), $port_data = GUICtrlRead($port_input_1), $name_data = GUICtrlRead($name_input_1), $password_data = GUICtrlRead($password_input_1)
 				
 				If $server_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести адрес сервера", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё Р°РґСЂРµСЃ СЃРµСЂРІРµСЂР°", -1, $action_dlg)
 				ElseIf $port_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести порт сервера", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё РїРѕСЂС‚ СЃРµСЂРІРµСЂР°", -1, $action_dlg)
 				ElseIf $name_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести ник", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё РЅРёРє", -1, $action_dlg)
 				Else
 					Local $ip_data = TCPNameToIP($server_data)
 					
@@ -159,11 +159,11 @@ Func _ActionDlg($iMode = 1)
 						$server = TcpConnect($ip_data, $port_data)
 						If $server = -1 or $server = 0 or @error Then
 							If @error = 1 Then
-								MsgBox(16 + 262144, "Ошибка", "Введён неверный IP адрес", -1, $action_dlg)
+								MsgBox(16 + 262144, "РћС€РёР±РєР°", "Р’РІРµРґС‘РЅ РЅРµРІРµСЂРЅС‹Р№ IP Р°РґСЂРµСЃ", -1, $action_dlg)
 							ElseIf @error = 2 Then
-								MsgBox(16 + 262144, "Ошибка", "Введён неверный порт", -1, $action_dlg)
+								MsgBox(16 + 262144, "РћС€РёР±РєР°", "Р’РІРµРґС‘РЅ РЅРµРІРµСЂРЅС‹Р№ РїРѕСЂС‚", -1, $action_dlg)
 							Else
-								MsgBox(16 + 262144, "Ошибка", "Не удалось подключиться к серверу", -1, $action_dlg)
+								MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє СЃРµСЂРІРµСЂСѓ", -1, $action_dlg)
 							EndIf
 						Else
 							$server_ip = $ip_data
@@ -182,11 +182,11 @@ Func _ActionDlg($iMode = 1)
 								Local $response_expand = _GetValueFromString($tcp_recv, "response")
 
 								If $response_expand = "invalid_password" Then
-									MsgBox(16 + 262144, "Ошибка", "Неправильный пароль для доступа на сервер", -1, $action_dlg)
+									MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РїР°СЂРѕР»СЊ РґР»СЏ РґРѕСЃС‚СѓРїР° РЅР° СЃРµСЂРІРµСЂ", -1, $action_dlg)
 								ElseIf $response_expand = "server_overflow" Then
-									MsgBox(16 + 262144, "Ошибка", "Сервер переполнен", -1, $action_dlg)
+									MsgBox(16 + 262144, "РћС€РёР±РєР°", "РЎРµСЂРІРµСЂ РїРµСЂРµРїРѕР»РЅРµРЅ", -1, $action_dlg)
 								ElseIf $response_expand = "username_already_exists" Then 
-									MsgBox(16 + 262144, "Ошибка", 'Пользователь с ником "'& $name_data & '" уже присутствует на сервере', -1, $action_dlg)
+									MsgBox(16 + 262144, "РћС€РёР±РєР°", 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ РЅРёРєРѕРј "'& $name_data & '" СѓР¶Рµ РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РЅР° СЃРµСЂРІРµСЂРµ', -1, $action_dlg)
 								ElseIf $response_expand = "connection_accepted" Then
 									$server_name = _GetValueFromString($tcp_recv, "server_name") 
 									$max_clients = _GetValueFromString($tcp_recv, "max_clients") 
@@ -200,26 +200,26 @@ Func _ActionDlg($iMode = 1)
 							EndIf
 						EndIf
 					Else
-						MsgBox(16 + 262144, "Ошибка", "Не удалось подключиться к серверу", -1, $action_dlg)
+						MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє СЃРµСЂРІРµСЂСѓ", -1, $action_dlg)
 					EndIf
 				EndIf
 			Case $create_btn
 				Local $server_data = GUICtrlRead($server_input_2), $port_data = GUICtrlRead($port_input_2), $name_data = GUICtrlRead($name_input_2), $password_data = GUICtrlRead($password_input_2), $max_clients_data = GUICtrlRead($users_input_2)
 				
 				If $server_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести адрес сервера", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё Р°РґСЂРµСЃ СЃРµСЂРІРµСЂР°", -1, $action_dlg)
 				ElseIf $port_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести порт сервера", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё РїРѕСЂС‚ СЃРµСЂРІРµСЂР°", -1, $action_dlg)
 				ElseIf $name_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести имя сервера", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё РёРјСЏ СЃРµСЂРІРµСЂР°", -1, $action_dlg)
 				ElseIf $max_clients_data = "" Then
-					MsgBox(16 + 262144, "Ошибка", "Необходимо ввести количество клиентов", -1, $action_dlg)
+					MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РёРµРЅС‚РѕРІ", -1, $action_dlg)
 				Else
 					Local $ip_data = TCPNameToIP($server_data)
 					
 					$server = TcpListen($ip_data, $port_data)
 					If $server = -1 or @error Then
-						MsgBox(16 + 262144, "Ошибка", "Не удалось создать сервер", -1, $action_dlg)
+						MsgBox(16 + 262144, "РћС€РёР±РєР°", "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СЃРµСЂРІРµСЂ", -1, $action_dlg)
 						TcpCloseSocket($server)
 					Else
 						_SaveAction(2)
@@ -243,7 +243,7 @@ EndFunc
 Func _SwitchAction($iState)
 	Switch $iState
 		Case 1 ;Client
-			WinSetTitle($action_dlg, "", "Клиент")
+			WinSetTitle($action_dlg, "", "РљР»РёРµРЅС‚")
 			GUISetIcon(@ScriptFullPath, -1)
 		
 			GUICtrlSetState($server_label_2, $GUI_HIDE)
@@ -273,7 +273,7 @@ Func _SwitchAction($iState)
 			
 			GUICtrlSetState($connect_btn, $GUI_DEFBUTTON)
 		Case 2 ;Server		
-			WinSetTitle($action_dlg, "", "Сервер")
+			WinSetTitle($action_dlg, "", "РЎРµСЂРІРµСЂ")
 			GUISetIcon(@ScriptFullPath, -2)
 			
 			GUICtrlSetState($server_label_1, $GUI_HIDE)
@@ -332,7 +332,7 @@ Func _CreateChat($sServer, $sNik)
 	TraySetState(1)
 	Opt("TrayOnEventMode", 0)
 	TraySetIcon(@ScriptFullPath, 100)
-	TraySetToolTip($application &" "& $version &@CRLF&@CRLF& "Адрес сервера: "& $server_ip &@CRLF& "Имя сервера: "& $server_name &@CRLF& "Пользователь: "& $usernik)
+	TraySetToolTip($application &" "& $version &@CRLF&@CRLF& "РђРґСЂРµСЃ СЃРµСЂРІРµСЂР°: "& $server_ip &@CRLF& "РРјСЏ СЃРµСЂРІРµСЂР°: "& $server_name &@CRLF& "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ: "& $usernik)
 
 	Global $main_dlg = GUICreate($application &" "& $version, 668, 465, -1, -1, -1, $WS_EX_TOPMOST)
 	GUISetIcon(@ScriptFullPath, -1, $main_dlg)	
@@ -355,25 +355,25 @@ Func _CreateChat($sServer, $sNik)
 	_ReadSettings()
 	
 	;Menu
-	Global $file_menu = GUICtrlCreateMenu("Файл")
-	Global $save_item = GUICtrlCreateMenuItem("Сохранить историю", $file_menu)
-	Global $clear_item = GUICtrlCreateMenuItem("Очистить историю", $file_menu)
+	Global $file_menu = GUICtrlCreateMenu("Р¤Р°Р№Р»")
+	Global $save_item = GUICtrlCreateMenuItem("РЎРѕС…СЂР°РЅРёС‚СЊ РёСЃС‚РѕСЂРёСЋ", $file_menu)
+	Global $clear_item = GUICtrlCreateMenuItem("РћС‡РёСЃС‚РёС‚СЊ РёСЃС‚РѕСЂРёСЋ", $file_menu)
 	GUICtrlCreateMenuItem("", $file_menu)
-	Global $exit_from_chat_item = GUICtrlCreateMenuItem("Выйти из чата", $file_menu)
-	Global $exit_item = GUICtrlCreateMenuItem("Выйти", $file_menu)
+	Global $exit_from_chat_item = GUICtrlCreateMenuItem("Р’С‹Р№С‚Рё РёР· С‡Р°С‚Р°", $file_menu)
+	Global $exit_item = GUICtrlCreateMenuItem("Р’С‹Р№С‚Рё", $file_menu)
 
-	Global $settings_menu = GUICtrlCreateMenu("Настройки")
-	Global $ontop_item = GUICtrlCreateMenuItem("Поверх остальных окон", $settings_menu)
+	Global $settings_menu = GUICtrlCreateMenu("РќР°СЃС‚СЂРѕР№РєРё")
+	Global $ontop_item = GUICtrlCreateMenuItem("РџРѕРІРµСЂС… РѕСЃС‚Р°Р»СЊРЅС‹С… РѕРєРѕРЅ", $settings_menu)
 	If $ontop_opt = 1 Then GUICtrlSetState($ontop_item, $GUI_CHECKED)	
-	Global $usesnd_item = GUICtrlCreateMenuItem("Использовать звуки", $settings_menu)
+	Global $usesnd_item = GUICtrlCreateMenuItem("РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р·РІСѓРєРё", $settings_menu)
 	If $usesnd_opt = 1 Then GUICtrlSetState($usesnd_item, $GUI_CHECKED)
 	GUICtrlCreateMenuItem("", $settings_menu)
-	Global $send_hotkey_menu = GUICtrlCreateMenu("Клавиша отправки", $settings_menu)
+	Global $send_hotkey_menu = GUICtrlCreateMenu("РљР»Р°РІРёС€Р° РѕС‚РїСЂР°РІРєРё", $settings_menu)
 	Global $send_hotkey_enter_item = GUICtrlCreateMenuItem("Enter", $send_hotkey_menu, -1, 1)
 	If $send_hotkey_opt = 1 Then GUICtrlSetState($send_hotkey_enter_item, $GUI_CHECKED)
 	Global $send_hotkey_ctrl_enter_item = GUICtrlCreateMenuItem("Ctrl+Enter", $send_hotkey_menu, -1, 1)
 	If $send_hotkey_opt = 2 Then GUICtrlSetState($send_hotkey_ctrl_enter_item, $GUI_CHECKED)
-	Global $opacity_menu = GUICtrlCreateMenu("Непрозрачность", $settings_menu)
+	Global $opacity_menu = GUICtrlCreateMenu("РќРµРїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ", $settings_menu)
 	Global $trans_10_item = GUICtrlCreateMenuItem("10%", $opacity_menu, -1, 1)
 	Global $trans_20_item = GUICtrlCreateMenuItem("20%", $opacity_menu, -1, 1)
 	Global $trans_30_item = GUICtrlCreateMenuItem("30%", $opacity_menu, -1, 1)
@@ -384,18 +384,18 @@ Func _CreateChat($sServer, $sNik)
 	Global $trans_80_item = GUICtrlCreateMenuItem("80%", $opacity_menu, -1, 1)
 	Global $trans_90_item = GUICtrlCreateMenuItem("90%", $opacity_menu, -1, 1)
 	GUICtrlCreateMenuItem("", $opacity_menu)
-	Global $trans_off_item = GUICtrlCreateMenuItem("Непрозрачное", $opacity_menu, -1, 1)
+	Global $trans_off_item = GUICtrlCreateMenuItem("РќРµРїСЂРѕР·СЂР°С‡РЅРѕРµ", $opacity_menu, -1, 1)
 	GUICtrlCreateMenuItem("", $settings_menu)
-	Global $font_item = GUICtrlCreateMenuItem("Шрифт...", $settings_menu)
-	Global $help_menu = GUICtrlCreateMenu("Помощь")
-	Global $homepage_item = GUICtrlCreateMenuItem("Сайт программы", $help_menu)
-	Global $server_info_item = GUICtrlCreateMenuItem("Сведения о сервере", $help_menu)
-	Global $about_item = GUICtrlCreateMenuItem("О программе", $help_menu)
+	Global $font_item = GUICtrlCreateMenuItem("РЁСЂРёС„С‚...", $settings_menu)
+	Global $help_menu = GUICtrlCreateMenu("РџРѕРјРѕС‰СЊ")
+	Global $homepage_item = GUICtrlCreateMenuItem("РЎР°Р№С‚ РїСЂРѕРіСЂР°РјРјС‹", $help_menu)
+	Global $server_info_item = GUICtrlCreateMenuItem("РЎРІРµРґРµРЅРёСЏ Рѕ СЃРµСЂРІРµСЂРµ", $help_menu)
+	Global $about_item = GUICtrlCreateMenuItem("Рћ РїСЂРѕРіСЂР°РјРјРµ", $help_menu)
 	
 	;Userlist Control
 	Global $userlist_lv = GUICtrlCreateListView("", 488, 10, 170, 325, $LVS_NOCOLUMNHEADER + $LVS_SORTASCENDING + $LVS_SINGLESEL)
 	_GUICtrlListView_SetExtendedListViewStyle($userlist_lv, $LVS_EX_FULLROWSELECT + $LVS_EX_INFOTIP)
-	_GUICtrlListView_InsertColumn($userlist_lv, 0, "Список пользователей", 166)
+	_GUICtrlListView_InsertColumn($userlist_lv, 0, "РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№", 166)
 	_RemoveWindowTheme(-1)
 	
     Global $hToodfgmageList = _GUIImageList_Create(16, 16, 5, 3)
@@ -403,25 +403,25 @@ Func _CreateChat($sServer, $sNik)
     _GUICtrlListView_SetImageList($userlist_lv, $hToodfgmageList, 1)
 
 	Global $userlist_menu = GUICtrlCreateContextMenu($userlist_lv)
-	Global $pm_item = GUICtrlCreateMenuItem("Отправить личное сообщение", $userlist_menu)
-	Global $ac_item = GUICtrlCreateMenuItem("Разбудить", $userlist_menu)
-	Global $file_send_item = GUICtrlCreateMenuItem("Передать файл", $userlist_menu)
+	Global $pm_item = GUICtrlCreateMenuItem("РћС‚РїСЂР°РІРёС‚СЊ Р»РёС‡РЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ", $userlist_menu)
+	Global $ac_item = GUICtrlCreateMenuItem("Р Р°Р·Р±СѓРґРёС‚СЊ", $userlist_menu)
+	Global $file_send_item = GUICtrlCreateMenuItem("РџРµСЂРµРґР°С‚СЊ С„Р°Р№Р»", $userlist_menu)
 	GUICtrlCreateMenuItem("", $userlist_menu)
-	Global $copy_userlist_item = GUICtrlCreateMenuItem("Скопировать", $userlist_menu)
-	Global $refresh_userlist_item = GUICtrlCreateMenuItem("Обновить список", $userlist_menu)
+	Global $copy_userlist_item = GUICtrlCreateMenuItem("РЎРєРѕРїРёСЂРѕРІР°С‚СЊ", $userlist_menu)
+	Global $refresh_userlist_item = GUICtrlCreateMenuItem("РћР±РЅРѕРІРёС‚СЊ СЃРїРёСЃРѕРє", $userlist_menu)
 
 	;Tray Menu
-	Global $show_tray_item = TrayCreateItem("Открыть")
-	Global $exit_tray_item = TrayCreateItem("Выйти")
+	Global $show_tray_item = TrayCreateItem("РћС‚РєСЂС‹С‚СЊ")
+	Global $exit_tray_item = TrayCreateItem("Р’С‹Р№С‚Рё")
 
 	Local $staus_parts[4] = [140, 310, 440, 650]
 	Global $main_status = _GUICtrlStatusBar_Create($main_dlg)
 	_GUICtrlStatusBar_SetParts($main_status, $staus_parts)
 
-	_GUICtrlStatusBar_SetText($main_status, "Всего в чате: 0 / "& $max_clients, 0)
-	_GUICtrlStatusBar_SetText($main_status, "Пользователь: "& $sNik, 1)
-	_GUICtrlStatusBar_SetText($main_status, "Сервер: "& $server_ip, 2)
-	_GUICtrlStatusBar_SetText($main_status, "Имя сервера: "& $server_name, 3)
+	_GUICtrlStatusBar_SetText($main_status, "Р’СЃРµРіРѕ РІ С‡Р°С‚Рµ: 0 / "& $max_clients, 0)
+	_GUICtrlStatusBar_SetText($main_status, "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ: "& $sNik, 1)
+	_GUICtrlStatusBar_SetText($main_status, "РЎРµСЂРІРµСЂ: "& $server_ip, 2)
+	_GUICtrlStatusBar_SetText($main_status, "РРјСЏ СЃРµСЂРІРµСЂР°: "& $server_name, 3)
 
 	AdlibRegister("_UnCheckTray", 500)
 	GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
@@ -436,7 +436,7 @@ Func _CreateChat($sServer, $sNik)
 				GuiDelete($main_dlg)
 				Exit
 			Case $gMsg = $exit_from_chat_item
-				If MsgBox(4 + 32, "Внимание", "Вый действительно хотите выйти из чата?", -1, $main_dlg) = 6 Then
+				If MsgBox(4 + 32, "Р’РЅРёРјР°РЅРёРµ", "Р’С‹Р№ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹Р№С‚Рё РёР· С‡Р°С‚Р°?", -1, $main_dlg) = 6 Then
 					TcpCloseSocket($server)
 					GuiDelete($main_dlg)
 					ExitLoop
@@ -448,21 +448,21 @@ Func _CreateChat($sServer, $sNik)
 			Case $gMsg = $homepage_item
 				ShellExecute($homepage)
 			Case $gMsg = $about_item
-				MsgBox(64, "О программе", $application &" "& $version &@CRLF& "Copyright © 2010 [Nuker-Hoax]" &@CRLF&@CRLF& "Благодарности:" &@CRLF& "John2010zz" &@CRLF&@CRLF& $homepage, -1, $main_dlg)
+				MsgBox(64, "Рћ РїСЂРѕРіСЂР°РјРјРµ", $application &" "& $version &@CRLF& "Copyright В© 2010 [Nuker-Hoax]" &@CRLF&@CRLF& "Р‘Р»Р°РіРѕРґР°СЂРЅРѕСЃС‚Рё:" &@CRLF& "John2010zz" &@CRLF&@CRLF& $homepage, -1, $main_dlg)
 			Case $gMsg = $server_info_item
-				MsgBox(64, "Сведения о сервере", "Имя сервера:" &@CRLF& $server_name &@CRLF&@CRLF& "Адрес сервера:" &@CRLF& $server_ip &@CRLF&@CRLF& "Максимум пользователей:" &@CRLF& $max_clients &@CRLF&@CRLF& "Ваш ник:" &@CRLF& $sNik, -1, $main_dlg)
+				MsgBox(64, "РЎРІРµРґРµРЅРёСЏ Рѕ СЃРµСЂРІРµСЂРµ", "РРјСЏ СЃРµСЂРІРµСЂР°:" &@CRLF& $server_name &@CRLF&@CRLF& "РђРґСЂРµСЃ СЃРµСЂРІРµСЂР°:" &@CRLF& $server_ip &@CRLF&@CRLF& "РњР°РєСЃРёРјСѓРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№:" &@CRLF& $max_clients &@CRLF&@CRLF& "Р’Р°С€ РЅРёРє:" &@CRLF& $sNik, -1, $main_dlg)
 			Case $gMsg = $convert_text_btn
 				Local $sTranslit = GUICtrlRead($send_edit)
 				If $sTranslit <> "" Then GuiCtrlSetData($send_edit, _ConvertKeyboard($sTranslit))
 			Case $gMsg = $save_item
-				Local $sFile = FileSaveDialog("Выберите файл для сохранения...", "", "Текстовые файлы (*.txt)", 16, $sNik &"_log",$main_dlg)
+				Local $sFile = FileSaveDialog("Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ...", "", "РўРµРєСЃС‚РѕРІС‹Рµ С„Р°Р№Р»С‹ (*.txt)", 16, $sNik &"_log",$main_dlg)
 				If not @error Then
 					Local $hFile = FileOpen($sFile &".txt", 2)
 					FileWrite($hFile, GUICtrlRead($history_edit))
 					FileClose($hFile)
 				EndIf
 			Case $gMsg = $clear_item
-				If MsgBox(4 + 32 + 262144, "Внимание", "Вы действительно хотите очистить историю?", -1, $main_dlg) = 6 Then GUICtrlSetData($history_edit, "")
+				If MsgBox(4 + 32 + 262144, "Р’РЅРёРјР°РЅРёРµ", "Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РѕС‡РёСЃС‚РёС‚СЊ РёСЃС‚РѕСЂРёСЋ?", -1, $main_dlg) = 6 Then GUICtrlSetData($history_edit, "")
 			Case $gMsg = $ontop_item
 				If $ontop_opt = 1 Then
 					IniWrite($settings_file, "Client", "AlwaysOnTop", 0)
@@ -506,7 +506,7 @@ Func _CreateChat($sServer, $sNik)
 				If $selected[0] <> 0 Then
 					Local $together = _GUICtrlListView_GetItemTextArray($userlist_lv, $selected[1])
 					If $together[0] <> 0 Then 
-						Local $file_to_send = FileOpenDialog("Выберите файл для передачи...", "", "Все файлы (*.*)", 1 + 2, "", $main_dlg)
+						Local $file_to_send = FileOpenDialog("Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР»СЏ РїРµСЂРµРґР°С‡Рё...", "", "Р’СЃРµ С„Р°Р№Р»С‹ (*.*)", 1 + 2, "", $main_dlg)
 						If not @error Then
 							Local $hTransferFile = FileOpen($file_to_send, 16)
 							If not @error Then
@@ -530,7 +530,7 @@ Func _CreateChat($sServer, $sNik)
 					Local $together = _GUICtrlListView_GetItemTextArray($userlist_lv, $selected[1])
 					If $together[0] <> 0 Then
 						If GuiCtrlRead($send_edit) = "" Then
-							MsgBox(16 + 262144, "Ошибка", "Текст сообщения необходимо ввести в поле отправки", -1, $main_dlg)
+							MsgBox(16 + 262144, "РћС€РёР±РєР°", "РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РЅРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё РІ РїРѕР»Рµ РѕС‚РїСЂР°РІРєРё", -1, $main_dlg)
 						Else
 							TcpSend($server, _EncodeText('<user="'& _ConvertStringToBinary($together[1]) &'" message="'& _ConvertStringToBinary(GuiCtrlRead($send_edit)) &'" action="'& _ConvertStringToBinary("pm") &'">'))
 							GUICtrlSetData($send_edit, "")
@@ -620,7 +620,7 @@ Func _CreateChat($sServer, $sNik)
 				Case "authorization"
 					If _GetValueFromString($tcpRecv, "response") = "server_overflow" Then
 						TcpCloseSocket($server)
-						MsgBox(16 + 262144, "Ошибка", "Сервер переполнен", -1, $main_dlg)
+						MsgBox(16 + 262144, "РћС€РёР±РєР°", "РЎРµСЂРІРµСЂ РїРµСЂРµРїРѕР»РЅРµРЅ", -1, $main_dlg)
 						GUIDelete($main_dlg)
 						ExitLoop
 					EndIf
@@ -634,10 +634,10 @@ Func _CreateChat($sServer, $sNik)
 						If _ConvertBinaryToString($sUserList[$i]) <> $sNik Then _GUICtrlListView_AddItem($userlist_lv, _ConvertBinaryToString($sUserList[$i]), 0)
 					Next
 										
-					_GUICtrlStatusBar_SetText($main_status, "Всего в чате: "& $sUserList[0] &" / "& $max_clients, 0)
+					_GUICtrlStatusBar_SetText($main_status, "Р’СЃРµРіРѕ РІ С‡Р°С‚Рµ: "& $sUserList[0] &" / "& $max_clients, 0)
 				Case "kick"	
 					TcpCloseSocket($server)
-					MsgBox(16 + 262144, "Внимание", "Вы были выкинуты с сервера", 10, $main_dlg)
+					MsgBox(16 + 262144, "Р’РЅРёРјР°РЅРёРµ", "Р’С‹ Р±С‹Р»Рё РІС‹РєРёРЅСѓС‚С‹ СЃ СЃРµСЂРІРµСЂР°", 10, $main_dlg)
 					GUIDelete($main_dlg)
 					ExitLoop
 				Case "pm"	
@@ -657,7 +657,7 @@ Func _CreateChat($sServer, $sNik)
 					FileWrite($hFile, $sTransferData)
 					FileClose($hFile)
 					
-					_WriteHistory('['& @HOUR & ':' & @MIN &'] Принят файл "'& $sTransferFile &'" от "'& $sTransferUser &'"')
+					_WriteHistory('['& @HOUR & ':' & @MIN &'] РџСЂРёРЅСЏС‚ С„Р°Р№Р» "'& $sTransferFile &'" РѕС‚ "'& $sTransferUser &'"')
 				Case "chatlog"
 					Local $sChatLog = _GetValueFromString($tcpRecv, "log")
 
@@ -667,7 +667,7 @@ Func _CreateChat($sServer, $sNik)
 					Local $sAwakeUser = _GetValueFromString($tcpRecv, "user")
 					If $usesnd_opt = 1 Then _WinAPI_PlaySound($alarm_snd)
 					_ShakeWindow($main_dlg)
-					_WriteHistory('['& @HOUR & ':' & @MIN &'] Пользователь "'& $sAwakeUser &'" попытался вас разбудить')
+					_WriteHistory('['& @HOUR & ':' & @MIN &'] РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ "'& $sAwakeUser &'" РїРѕРїС‹С‚Р°Р»СЃСЏ РІР°СЃ СЂР°Р·Р±СѓРґРёС‚СЊ')
 				Case "sendmessage"
 					Local $sDate = _GetValueFromString($tcpRecv, "date")
 					Local $sUserName = _GetValueFromString($tcpRecv, "username")
@@ -755,30 +755,30 @@ Func _ServerProcessor()
 		$userclient[$i] = -1
 	Next
 
-	Global $manage_dlg = GUICreate("Управление сервером", 461, 599)
+	Global $manage_dlg = GUICreate("РЈРїСЂР°РІР»РµРЅРёРµ СЃРµСЂРІРµСЂРѕРј", 461, 599)
 	GUISetIcon(@ScriptFullPath, -2)
 
-	Global $file_menu = GUICtrlCreateMenu("Файл")
-	Global $save_history_item = GUICtrlCreateMenuItem("Сохранить историю", $file_menu)
-	Global $clear_history_item = GUICtrlCreateMenuItem("Очистить историю", $file_menu)
+	Global $file_menu = GUICtrlCreateMenu("Р¤Р°Р№Р»")
+	Global $save_history_item = GUICtrlCreateMenuItem("РЎРѕС…СЂР°РЅРёС‚СЊ РёСЃС‚РѕСЂРёСЋ", $file_menu)
+	Global $clear_history_item = GUICtrlCreateMenuItem("РћС‡РёСЃС‚РёС‚СЊ РёСЃС‚РѕСЂРёСЋ", $file_menu)
 	GUICtrlCreateMenuItem("", $file_menu)
-	Global $exit_item = GUICtrlCreateMenuItem("Выйти", $file_menu)
+	Global $exit_item = GUICtrlCreateMenuItem("Р’С‹Р№С‚Рё", $file_menu)
 
-	Global $help_menu = GUICtrlCreateMenu("Помощь")
-	GUICtrlCreateMenuItem("Сайт программы", $help_menu)
-	GUICtrlCreateMenuItem("О программе", $help_menu)
+	Global $help_menu = GUICtrlCreateMenu("РџРѕРјРѕС‰СЊ")
+	GUICtrlCreateMenuItem("РЎР°Р№С‚ РїСЂРѕРіСЂР°РјРјС‹", $help_menu)
+	GUICtrlCreateMenuItem("Рћ РїСЂРѕРіСЂР°РјРјРµ", $help_menu)
 
 	Global $userlist_lv = GUICtrlCreateListView("", 10, 10, 441, 200, $LVS_SINGLESEL + $LVS_SORTASCENDING + $LVS_NOSORTHEADER)
 	_GUICtrlListView_SetExtendedListViewStyle($userlist_lv, $LVS_EX_GRIDLINES + $LVS_EX_FULLROWSELECT + $LVS_EX_INFOTIP)
 
-	_GUICtrlListView_InsertColumn($userlist_lv, 0, "Пользователь", 100)
-	_GUICtrlListView_InsertColumn($userlist_lv, 1, "Адрес пользователя", 120)
-	_GUICtrlListView_InsertColumn($userlist_lv, 2, "Версия клиента", 100)
-	_GUICtrlListView_InsertColumn($userlist_lv, 3, "Дата подключения", 120)
+	_GUICtrlListView_InsertColumn($userlist_lv, 0, "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ", 100)
+	_GUICtrlListView_InsertColumn($userlist_lv, 1, "РђРґСЂРµСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ", 120)
+	_GUICtrlListView_InsertColumn($userlist_lv, 2, "Р’РµСЂСЃРёСЏ РєР»РёРµРЅС‚Р°", 100)
+	_GUICtrlListView_InsertColumn($userlist_lv, 3, "Р”Р°С‚Р° РїРѕРґРєР»СЋС‡РµРЅРёСЏ", 120)
 
 	Global $userlist_menu = GUICtrlCreateContextMenu($userlist_lv)
-	Global $kick_item = GUICtrlCreateMenuItem("Выкинуть", $userlist_menu)
-	Global $copy_item = GUICtrlCreateMenuItem("Копировать", $userlist_menu)
+	Global $kick_item = GUICtrlCreateMenuItem("Р’С‹РєРёРЅСѓС‚СЊ", $userlist_menu)
+	Global $copy_item = GUICtrlCreateMenuItem("РљРѕРїРёСЂРѕРІР°С‚СЊ", $userlist_menu)
 
 	Global $history_edit = GUICtrlCreateEdit("", 10, 220, 441, 200, $ES_MULTILINE + $ES_READONLY + $ES_AUTOVSCROLL, $WS_EX_STATICEDGE)
 	Global $send_input = GUICtrlCreateInput("", 10, 428, 410, 21, -1, $WS_EX_STATICEDGE)
@@ -796,10 +796,10 @@ Func _ServerProcessor()
 	
 	GUISetState(@SW_HIDE)
 
-	Global $show_tray_item = TrayCreateItem("Показать")
-	Global $copy_tray_item = TrayCreateItem("Скопировать адрес сервера")
+	Global $show_tray_item = TrayCreateItem("РџРѕРєР°Р·Р°С‚СЊ")
+	Global $copy_tray_item = TrayCreateItem("РЎРєРѕРїРёСЂРѕРІР°С‚СЊ Р°РґСЂРµСЃ СЃРµСЂРІРµСЂР°")
 	TrayCreateItem("")
-	Global $exit_tray_item = TrayCreateItem("Выйти")
+	Global $exit_tray_item = TrayCreateItem("Р’С‹Р№С‚Рё")
 
 	AdlibRegister("_UnCheckTray", 500)
 	AdlibRegister("_SendStats", 60000)
@@ -808,11 +808,11 @@ Func _ServerProcessor()
 		Local $gMsg = GUIGetMsg(), $tMsg = TrayGetMsg()
 		Select
 			Case $gMsg = $exit_item or $tMsg = $exit_tray_item
-				If MsgBox(4 + 32 + 262144, "Внимание", "Вы действительно хотите завершить работу сервера?", -1, $manage_dlg) = 6 Then
+				If MsgBox(4 + 32 + 262144, "Р’РЅРёРјР°РЅРёРµ", "Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ Р·Р°РІРµСЂС€РёС‚СЊ СЂР°Р±РѕС‚Сѓ СЃРµСЂРІРµСЂР°?", -1, $manage_dlg) = 6 Then
 					GuiDelete($manage_dlg)
 					
 					If $connected > 0 Then
-						_SendAll("Сервер", "Сервер завершает свою работу")
+						_SendAll("РЎРµСЂРІРµСЂ", "РЎРµСЂРІРµСЂ Р·Р°РІРµСЂС€Р°РµС‚ СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ")
 						
 						Sleep(1500)
 						
@@ -835,7 +835,7 @@ Func _ServerProcessor()
 				_SendMessage($manage_dlg, $WM_SYSCOMMAND, BitOR($SC_MOVE, $HTCAPTION), 0)
 			Case $gMsg = $save_history_item
 				If $server_log <> "" Then
-					Local $log_file = FileSaveDialog("Выберите файл для сохранения отчёта...", "", "Текстовые файлы (*.txt)", 16, "leet_server_log.txt", $manage_dlg)
+					Local $log_file = FileSaveDialog("Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РѕС‚С‡С‘С‚Р°...", "", "РўРµРєСЃС‚РѕРІС‹Рµ С„Р°Р№Р»С‹ (*.txt)", 16, "leet_server_log.txt", $manage_dlg)
 					If not @error Then
 						Local $hFile = FileOpen($log_file, 2)
 						FileWrite($hFile, $server_log)
@@ -843,7 +843,7 @@ Func _ServerProcessor()
 					EndIf
 				EndIf
 			Case $gMsg = $clear_history_item
-				If MsgBox(4 + 32 + 262144, "Внимание", "Вы действительно хотите очистить отчёт?", -1, $manage_dlg) = 6 Then
+				If MsgBox(4 + 32 + 262144, "Р’РЅРёРјР°РЅРёРµ", "Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РѕС‡РёСЃС‚РёС‚СЊ РѕС‚С‡С‘С‚?", -1, $manage_dlg) = 6 Then
 					$server_log = ""
 					GUICtrlSetData($history_edit, $server_log)
 				EndIf
@@ -853,7 +853,7 @@ Func _ServerProcessor()
 				If $selected[0] <> 0 Then
 					Local $together = _GUICtrlListView_GetItemTextArray($userlist_lv, $selected[1])
 					If $together[0] <> 0 Then
-						If MsgBox(4 + 32 + 262144, "Внимание", 'Вы действительно хотите выкинуть пользователя "'& $together[1] &'" с сервера?', -1, $manage_dlg) = 6 Then
+						If MsgBox(4 + 32 + 262144, "Р’РЅРёРјР°РЅРёРµ", 'Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІС‹РєРёРЅСѓС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ "'& $together[1] &'" СЃ СЃРµСЂРІРµСЂР°?', -1, $manage_dlg) = 6 Then
 							
 							For $i = 1 to $max_users
 								If $username[$i] = $together[1] Then $sKickSocket = $socket[$i]
@@ -873,7 +873,7 @@ Func _ServerProcessor()
 			Case $gMsg = $send_btn
 				Local $send_data = GUICtrlRead($send_input)
 				If $send_data <> "" and not StringIsSpace($send_data) Then 
-					_SendAll("Сервер", $send_data, "sendmessage", 0, 1)
+					_SendAll("РЎРµСЂРІРµСЂ", $send_data, "sendmessage", 0, 1)
 					GUICtrlSetData($send_input, "")
 					_RefreshStatistics()
 				EndIf
@@ -922,7 +922,7 @@ Func _ServerProcessor()
 									
 									Sleep(50)
 									
-									_SendAll("Сервер", $username[$open] &" присоединился")
+									_SendAll("РЎРµСЂРІРµСЂ", $username[$open] &" РїСЂРёСЃРѕРµРґРёРЅРёР»СЃСЏ")
 									
 									_SendStats()
 								EndIf
@@ -1016,7 +1016,7 @@ Func _RefreshStatistics()
 		$connected_old = $connected
 	EndIf
 	
-	TraySetToolTip($application &" "& $version &@CRLF&@CRLF& "Имя сервера: "& $server_name &@CRLF& "Адрес сервера: "& $server_ip &@CRLF& "Всего в чате: "& $connected &" / "& $max_users)
+	TraySetToolTip($application &" "& $version &@CRLF&@CRLF& "РРјСЏ СЃРµСЂРІРµСЂР°: "& $server_name &@CRLF& "РђРґСЂРµСЃ СЃРµСЂРІРµСЂР°: "& $server_ip &@CRLF& "Р’СЃРµРіРѕ РІ С‡Р°С‚Рµ: "& $connected &" / "& $max_users)
 EndFunc
 
 Func _GetStats()
@@ -1071,7 +1071,7 @@ Func _Open()
 EndFunc
 
 Func _DisconnectUser($iID)
-	_SendAll("Сервер", $username[$iID] &" вышел")
+	_SendAll("РЎРµСЂРІРµСЂ", $username[$iID] &" РІС‹С€РµР»")
 	
 	TcpCloseSocket($socket[$iID])
 	$socket[$iID] = -1
@@ -1177,7 +1177,7 @@ Func _ConvertKeyboard($sString)
     Local $sEnglish = 'q|w|e|r|t|y|u|i|o|p|[|]|a|s|d|f|g|h|j|k|l|;|"|z|x|c|v|b|n|m|,|.' 
     $sEnglish &= '|' & StringUpper($sEnglish) 
  
-    Local $sRussian = 'й|ц|у|к|е|н|г|ш|щ|з|х|ъ|ф|ы|в|а|п|р|о|л|д|ж|э|я|ч|с|м|и|т|ь|б|ю' 
+    Local $sRussian = 'Р№|С†|Сѓ|Рє|Рµ|РЅ|Рі|С€|С‰|Р·|С…|СЉ|С„|С‹|РІ|Р°|Рї|СЂ|Рѕ|Р»|Рґ|Р¶|СЌ|СЏ|С‡|СЃ|Рј|Рё|С‚|СЊ|Р±|СЋ' 
     $sRussian &= '|' & StringUpper($sRussian) 
  
     Local $aEnglish = StringSplit($sEnglish, "|") 
@@ -1186,7 +1186,7 @@ Func _ConvertKeyboard($sString)
     Local $sReturn = $sString 
  
     For $i = 1 To $aEnglish[0]
-		Local $iEnglish = StringRegExp($sString, '[a-zA-Z]', 3), $iRussian = StringRegExp($sString, '[а-яА-Я]', 3)
+		Local $iEnglish = StringRegExp($sString, '[a-zA-Z]', 3), $iRussian = StringRegExp($sString, '[Р°-СЏРђ-РЇ]', 3)
 			
 		If UBound($iEnglish) > UBound($iRussian) Then
 			$sReturn = StringReplace($sReturn, $aEnglish[$i], $aRussian[$i], 0, 1)
